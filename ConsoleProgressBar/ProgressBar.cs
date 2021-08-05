@@ -11,6 +11,8 @@ namespace ConsoleProgressBar
         private const char blank = ' ';
         private const string del = "\b";
         private int numCompleted = 0;
+        private int cursorLeft = Console.CursorLeft;
+        private int cursorTop = Console.CursorTop;
 
         public ProgressBar() {
             Bar = GetUpdate();
@@ -68,11 +70,11 @@ namespace ConsoleProgressBar
         {
             numCompleted++;
 
-            float oldRatio = (float)(numCompleted - 1) / NumSteps;
-            float newRatio = (float)numCompleted / NumSteps;
+            double oldRatio = (double)(numCompleted - 1) / NumSteps;
+            double newRatio = (double) numCompleted / NumSteps;
 
-            int oldUnits = (int)(oldRatio * BarSize);
-            int newUnits = (int)(newRatio * BarSize);
+            int oldUnits = (int)(Math.Round(oldRatio * BarSize, MidpointRounding.AwayFromZero));
+            int newUnits = (int)(Math.Round(newRatio * BarSize, MidpointRounding.AwayFromZero));
 
             if (newUnits > oldUnits)
             {
@@ -102,19 +104,15 @@ namespace ConsoleProgressBar
 
             bar.Add(RBracket);
 
-            return String.Join("", bar.ToArray());
+            return String.Concat((String.Join("", bar.ToArray())), GetPercentComplete());
         }
 
 
-        private void ClearLine()
+        private string GetPercentComplete()
         {
-            var delLine = "";
-            for (int i = 0; i < BarSize + 3; i++) // 3 since 2 brackets and newline
-            {
-                delLine = String.Concat(delLine, del);
-            }
-
-            Console.Write(delLine);
+            double ratio = (double) numCompleted / NumSteps;
+            double percent = ratio * 100;
+            return String.Concat(percent.ToString(), "% Complete.");
         }
 
 
@@ -131,16 +129,8 @@ namespace ConsoleProgressBar
                 Bar = GetUpdate();
             }
 
-            ClearLine();
+            Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.WriteLine(Bar);
         }
-
-
-
-        //public override string ToString()
-        //{
-        //    return this.bar;
-        //}
-
     }
 }

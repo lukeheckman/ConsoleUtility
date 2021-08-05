@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ConsoleProgressBar
@@ -13,10 +14,11 @@ namespace ConsoleProgressBar
         static void Main(string[] args)
         {
             var myBar = new ProgressBar(10, 10);
+            myBar.DrawCurrent();
             for (int i = 0; i < 10; i++)
             {
-                myBar.Draw();
-                Console.Read();
+                myBar.DrawUpdate();
+                Thread.Sleep(200);
             }
             Console.Read();
         }
