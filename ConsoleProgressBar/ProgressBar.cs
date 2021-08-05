@@ -13,7 +13,7 @@ namespace ConsoleProgressBar
         private int numCompleted = 0;
 
         public ProgressBar() {
-            Bar = GetBar(numCompleted);
+            Bar = GetUpdate();
         }
 
 
@@ -21,7 +21,7 @@ namespace ConsoleProgressBar
         {
             NumSteps = numSteps;
             BarSize = barSize;
-            Bar = GetBar(numCompleted);
+            Bar = GetUpdate();
         }
 
 
@@ -41,7 +41,7 @@ namespace ConsoleProgressBar
             RBracket = rBracketChar;
             NumSteps = numSteps;
             BarSize = barSize;
-            Bar = GetBar(numCompleted);
+            Bar = GetUpdate();
         }
 
 
@@ -63,7 +63,28 @@ namespace ConsoleProgressBar
         private string Bar { get; set; }
 
 
-        private string GetBar(int numCompleted)
+        // Increases numCompleted by 1 and checks to see if the bar needs a visual update.
+        private Boolean NeedsUpdate()
+        {
+            numCompleted++;
+
+            float oldRatio = (float)(numCompleted - 1) / NumSteps;
+            float newRatio = (float)numCompleted / NumSteps;
+
+            int oldUnits = (int)(oldRatio * BarSize);
+            int newUnits = (int)(newRatio * BarSize);
+
+            if (newUnits > oldUnits)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+
+        // Updates and returns the new bar as a string.
+        private string GetUpdate()
         {
             var bar = new List<char>();
 
@@ -85,27 +106,10 @@ namespace ConsoleProgressBar
         }
 
 
-        private void Update()
-        {
-            numCompleted++;
-
-            float oldRatio = numCompleted - 1 / NumSteps;
-            float newRatio = numCompleted / NumSteps;
-
-            int oldUnits = (int)oldRatio * BarSize;
-            int newUnits = (int)newRatio * BarSize;
-
-            if (newUnits > oldUnits)
-            {
-                Bar = GetBar(newUnits);
-            }
-        }
-
-
         private void ClearLine()
         {
             var delLine = "";
-            for (int i = 0; i < BarSize + 2; i++)
+            for (int i = 0; i < BarSize + 3; i++) // 3 since 2 brackets and newline
             {
                 delLine = String.Concat(delLine, del);
             }
@@ -114,12 +118,23 @@ namespace ConsoleProgressBar
         }
 
 
-        public void Draw()
+        public void DrawCurrent()
         {
-            Update();
+            Console.WriteLine(Bar);
+        }
+
+
+        public void DrawUpdate()
+        {
+            if (NeedsUpdate())
+            {
+                Bar = GetUpdate();
+            }
+
             ClearLine();
             Console.WriteLine(Bar);
         }
+
 
 
         //public override string ToString()

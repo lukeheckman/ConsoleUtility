@@ -12,7 +12,7 @@ namespace ConsoleProgressBar
 
         static void Main(string[] args)
         {
-            var myBar = new ProgressBar(1, 10);
+            var myBar = new ProgressBar(10, 10);
             for (int i = 0; i < 10; i++)
             {
                 myBar.Draw();
