@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleProgressBar
 {
     public class ProgressBar
     {
         private const char blank = ' ';
-        private const string del = "\b";
         private int numCompleted = 0;
+        private int progress = 0;
         private int cursorLeft = Console.CursorLeft;
         private int cursorTop = Console.CursorTop;
 
@@ -49,18 +46,13 @@ namespace ConsoleProgressBar
 
         public char Status { get; set; } = '■';
 
-
         public char LBracket { get; set; } = '[';
-
 
         public char RBracket { get; set; } = ']';
 
-
         public int BarSize { get; set; } = 10;
 
-
         public int NumSteps { get; set; } = 100;
-
 
         private string Bar { get; set; }
 
@@ -73,11 +65,12 @@ namespace ConsoleProgressBar
             double oldRatio = (double)(numCompleted - 1) / NumSteps;
             double newRatio = (double) numCompleted / NumSteps;
 
-            int oldUnits = (int)(Math.Round(oldRatio * BarSize, MidpointRounding.AwayFromZero));
-            int newUnits = (int)(Math.Round(newRatio * BarSize, MidpointRounding.AwayFromZero));
+            int oldUnits = (int) Math.Floor(oldRatio * BarSize);
+            int newUnits = (int) Math.Floor(newRatio * BarSize);
 
             if (newUnits > oldUnits)
             {
+                progress = newUnits;
                 return true;
             }
 
@@ -92,19 +85,19 @@ namespace ConsoleProgressBar
 
             bar.Add(LBracket);
 
-            for (int i = 0; i < numCompleted; i++)
+            for (int i = 0; i < progress; i++)
             {
                 bar.Add(Status);
             }
 
-            for (int i = 0; i < BarSize - numCompleted; i++)
+            for (int i = 0; i < BarSize - progress; i++)
             {
                 bar.Add(blank);
             }
 
             bar.Add(RBracket);
 
-            return String.Concat((String.Join("", bar.ToArray())), GetPercentComplete());
+            return String.Join("", bar.ToArray());
         }
 
 
@@ -112,7 +105,14 @@ namespace ConsoleProgressBar
         {
             double ratio = (double) numCompleted / NumSteps;
             double percent = ratio * 100;
-            return String.Concat(percent.ToString(), "% Complete.");
+
+            if (percent == 100)
+            {
+                return String.Concat(" ", String.Format("{0:0.00}", percent), "% Complete.\nProcess completed.");
+            }
+
+            // Format is first arg (indexed at 0) is formatted as x.00
+            return String.Concat(" ", String.Format("{0:0.00}", percent), "% Complete.");
         }
 
 
@@ -130,7 +130,8 @@ namespace ConsoleProgressBar
             }
 
             Console.SetCursorPosition(cursorLeft, cursorTop);
-            Console.WriteLine(Bar);
+            Console.Write(Bar);
+            Console.Write(GetPercentComplete());
         }
     }
 }
