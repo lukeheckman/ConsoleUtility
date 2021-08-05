@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleProgressBar
 {
     public class ProgressBar
     {
         private const char blank = ' ';
-        private const string del = "\b";
         private int numCompleted = 0;
+        private int progress = 0;
+        private int cursorLeft = Console.CursorLeft;
+        private int cursorTop = Console.CursorTop;
 
         public ProgressBar() {
-            Bar = GetBar(numCompleted);
+            Bar = GetUpdate();
         }
 
 
@@ -21,7 +20,7 @@ namespace ConsoleProgressBar
         {
             NumSteps = numSteps;
             BarSize = barSize;
-            Bar = GetBar(numCompleted);
+            Bar = GetUpdate();
         }
 
 
@@ -41,40 +40,57 @@ namespace ConsoleProgressBar
             RBracket = rBracketChar;
             NumSteps = numSteps;
             BarSize = barSize;
-            Bar = GetBar(numCompleted);
+            Bar = GetUpdate();
         }
 
 
         public char Status { get; set; } = '■';
 
-
         public char LBracket { get; set; } = '[';
-
 
         public char RBracket { get; set; } = ']';
 
-
         public int BarSize { get; set; } = 10;
 
-
         public int NumSteps { get; set; } = 100;
-
 
         private string Bar { get; set; }
 
 
-        private string GetBar(int numCompleted)
+        // Increases numCompleted by 1 and checks to see if the bar needs a visual update.
+        private Boolean NeedsUpdate()
+        {
+            numCompleted++;
+
+            double oldRatio = (double)(numCompleted - 1) / NumSteps;
+            double newRatio = (double) numCompleted / NumSteps;
+
+            int oldUnits = (int) Math.Floor(oldRatio * BarSize);
+            int newUnits = (int) Math.Floor(newRatio * BarSize);
+
+            if (newUnits > oldUnits)
+            {
+                progress = newUnits;
+                return true;
+            }
+
+            return false;
+        }
+
+
+        // Updates and returns the new bar as a string.
+        private string GetUpdate()
         {
             var bar = new List<char>();
 
             bar.Add(LBracket);
 
-            for (int i = 0; i < numCompleted; i++)
+            for (int i = 0; i < progress; i++)
             {
                 bar.Add(Status);
             }
 
-            for (int i = 0; i < BarSize - numCompleted; i++)
+            for (int i = 0; i < BarSize - progress; i++)
             {
                 bar.Add(blank);
             }
@@ -85,47 +101,37 @@ namespace ConsoleProgressBar
         }
 
 
-        private void Update()
+        private string GetPercentComplete()
         {
-            numCompleted++;
+            double ratio = (double) numCompleted / NumSteps;
+            double percent = ratio * 100;
 
-            float oldRatio = numCompleted - 1 / NumSteps;
-            float newRatio = numCompleted / NumSteps;
-
-            int oldUnits = (int)oldRatio * BarSize;
-            int newUnits = (int)newRatio * BarSize;
-
-            if (newUnits > oldUnits)
+            if (percent == 100)
             {
-                Bar = GetBar(newUnits);
+                return String.Concat(" ", String.Format("{0:0.00}", percent), "% Complete.\nProcess completed.");
             }
+
+            // Format is first arg (indexed at 0) is formatted as x.00
+            return String.Concat(" ", String.Format("{0:0.00}", percent), "% Complete.");
         }
 
 
-        private void ClearLine()
+        public void DrawCurrent()
         {
-            var delLine = "";
-            for (int i = 0; i < BarSize + 2; i++)
-            {
-                delLine = String.Concat(delLine, del);
-            }
-
-            Console.Write(delLine);
-        }
-
-
-        public void Draw()
-        {
-            Update();
-            ClearLine();
             Console.WriteLine(Bar);
         }
 
 
-        //public override string ToString()
-        //{
-        //    return this.bar;
-        //}
+        public void DrawUpdate()
+        {
+            if (NeedsUpdate())
+            {
+                Bar = GetUpdate();
+            }
 
+            Console.SetCursorPosition(cursorLeft, cursorTop);
+            Console.Write(Bar);
+            Console.Write(GetPercentComplete());
+        }
     }
 }
