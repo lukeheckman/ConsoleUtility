@@ -11,8 +11,17 @@ namespace ConsoleProgressBar
         private int cursorLeft = Console.CursorLeft;
         private int cursorTop = Console.CursorTop;
 
-        public ProgressBar() {
-            Bar = GetUpdate();
+        public ProgressBar()
+        {
+            Rebuild();
+            SetCursorVisibility();
+        }
+
+        public ProgressBar(int numSteps)
+        {
+            NumSteps = numSteps;
+            Rebuild();
+            SetCursorVisibility();
         }
 
 
@@ -20,7 +29,8 @@ namespace ConsoleProgressBar
         {
             NumSteps = numSteps;
             BarSize = barSize;
-            Bar = GetUpdate();
+            Rebuild();
+            SetCursorVisibility();
         }
 
 
@@ -40,7 +50,8 @@ namespace ConsoleProgressBar
             RBracket = rBracketChar;
             NumSteps = numSteps;
             BarSize = barSize;
-            Bar = GetUpdate();
+            Rebuild();
+            SetCursorVisibility();
         }
 
 
@@ -57,16 +68,22 @@ namespace ConsoleProgressBar
         private string Bar { get; set; }
 
 
+        private void SetCursorVisibility()
+        {
+            Console.CursorVisible = false;
+        }
+
+
         // Increases numCompleted by 1 and checks to see if the bar needs a visual update.
-        private Boolean NeedsUpdate()
+        private Boolean NeedsRebuilt()
         {
             numCompleted++;
 
             double oldRatio = (double)(numCompleted - 1) / NumSteps;
-            double newRatio = (double) numCompleted / NumSteps;
+            double newRatio = (double)numCompleted / NumSteps;
 
-            int oldUnits = (int) Math.Floor(oldRatio * BarSize);
-            int newUnits = (int) Math.Floor(newRatio * BarSize);
+            int oldUnits = (int)Math.Floor(oldRatio * BarSize);
+            int newUnits = (int)Math.Floor(newRatio * BarSize);
 
             if (newUnits > oldUnits)
             {
@@ -79,7 +96,7 @@ namespace ConsoleProgressBar
 
 
         // Updates and returns the new bar as a string.
-        private string GetUpdate()
+        private void Rebuild()
         {
             var bar = new List<char>();
 
@@ -97,18 +114,18 @@ namespace ConsoleProgressBar
 
             bar.Add(RBracket);
 
-            return String.Join("", bar.ToArray());
+            Bar = String.Join("", bar.ToArray());
         }
 
 
-        private string GetPercentComplete()
+        private string GetPercent()
         {
-            double ratio = (double) numCompleted / NumSteps;
+            double ratio = (double)numCompleted / NumSteps;
             double percent = ratio * 100;
 
-            if (percent == 100)
+            if (percent >= 100)
             {
-                return String.Concat(" ", String.Format("{0:0.00}", percent), "% Complete.\nProcess completed.");
+                return String.Concat(" 100.00% Complete.\nProcess completed.\n");
             }
 
             // Format is first arg (indexed at 0) is formatted as x.00
@@ -122,16 +139,16 @@ namespace ConsoleProgressBar
         }
 
 
-        public void DrawUpdate()
+        public void Update()
         {
-            if (NeedsUpdate())
+            if (NeedsRebuilt())
             {
-                Bar = GetUpdate();
+                Rebuild();
             }
 
             Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.Write(Bar);
-            Console.Write(GetPercentComplete());
+            Console.Write(GetPercent());
         }
     }
 }
