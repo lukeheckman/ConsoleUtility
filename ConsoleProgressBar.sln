@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleProgressBar", "ConsoleProgressBar\ConsoleProgressBar.csproj", "{4BC8571D-0A06-4302-B877-C3CDD0C98343}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "ConsoleProgressBar\Testing.csproj", "{4BC8571D-0A06-4302-B877-C3CDD0C98343}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProgressBar", "ProgressBar\ProgressBar.csproj", "{19E572D5-E0F9-4CD8-802B-DD9681194822}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4BC8571D-0A06-4302-B877-C3CDD0C98343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BC8571D-0A06-4302-B877-C3CDD0C98343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BC8571D-0A06-4302-B877-C3CDD0C98343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19E572D5-E0F9-4CD8-802B-DD9681194822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19E572D5-E0F9-4CD8-802B-DD9681194822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19E572D5-E0F9-4CD8-802B-DD9681194822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19E572D5-E0F9-4CD8-802B-DD9681194822}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
