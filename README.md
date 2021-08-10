@@ -1,4 +1,6 @@
-# ConsoleUtility.ProgressBar
+# ConsoleUtility
+
+## ConsoleUtility.ProgressBar
 
 <pre>[■■■■■■■■  ] 80.00% Complete.</pre>
 
@@ -12,29 +14,29 @@ Process completed.
 ---
 
 
-## Project Description
+### Project Description
 
 This project aims to provide easy, reusable implementation for a progress bar to be displayed in a console application to reassure users that longer tasks are progressing towards completion.
 Its primary design is for monitoring automated tasks that are not run on a CI or CD machine but rather in the background on a user's device.
 
 
-## Project Specifications
+### Project Specifications
 
 This project builds a dynamic link library (DLL) written in C# targeting .NET Framework 4.7.2.
 Since this project has been built using C#, it is NOT a Windows DLL - it can only be referenced and called from other .NET languages as an assembly. 
 
 
-## Project Files
+### Project Files
 
-The ConsoleUtility solution contains two C# files (ProgressBar.cs and ProgressBarTests) used for building the class library and testing the class, respectively.
-To generate the ConsoleProgressBar DLL on your own, build the solution in Visual Studio. Alternatively, download and use the DLL from [here](ProgressBar/bin/Debug/).
+The ConsoleUtility solution contains two C# files for this specific class library - ProgressBar.cs and ProgressBarTests.cs. They are used for building the DLL and performing tests, respectively.
+To generate the ProgressBar DLL on your own, build the solution in Visual Studio. Alternatively, download and use the DLL from [here](ProgressBar/bin/Debug/).
 
 ---
 
 
-## ProgressBar Class
+### ProgressBar Class
 
-### Constructors
+#### Constructors
 
 `ProgressBar()` initializes a new instance of the ProgressBar Class with the default properties.
 
@@ -43,7 +45,7 @@ To generate the ConsoleProgressBar DLL on your own, build the solution in Visual
 `ProgressBar(char, char, char, int, int)` initializes a new instance of the ProgressBar Class with the given filler, left and right brackets, total number of steps, and  bar size.
 
 
-### Properties
+#### Properties
 
 `Filler` Gets or sets the character to fill the bar with.
 
@@ -58,7 +60,7 @@ To generate the ConsoleProgressBar DLL on your own, build the solution in Visual
 `Bar` Gets or sets the current bar to display using the other properties.
 
 
-### Methods
+#### Methods
 
 `NeedsUpdate()` Increases the number of completed steps by 1 and returns a Boolean value of whether the bar needs to be updated or not based on the number completed out of the total number of steps.
 
@@ -73,7 +75,7 @@ To generate the ConsoleProgressBar DLL on your own, build the solution in Visual
 ---
 
 
-## Remarks
+### Remarks
 
 Since this class is designed to be used in automated console applications, the most common constructor to use would be ProgressBar(int, int).
 The standard use of this class would be to create an instance outside of a for loop, display the empty bar using the DrawCurrent method before entering the loop, and then call the DrawUpdate method within each iteration of the loop.
@@ -81,7 +83,7 @@ The standard use of this class would be to create an instance outside of a for l
 ---
 
 
-## Code Example
+### Code Example
 
 ```c#
 using System;
@@ -115,7 +117,7 @@ class Test
 }
 ```
 
-### Output
+#### Output
 <pre>{                                                                                  } 0.00% Complete.</pre>
 &darr; &darr; &darr;
 
