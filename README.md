@@ -1,11 +1,11 @@
 # ConsoleProgressBar
 
-<pre>[■■■■■■■■  ] 80% Complete.</pre>
+<pre>[■■■■■■■■  ] 80.00% Complete.</pre>
 
 &darr; &darr; &darr;
 
 <pre>
-[■■■■■■■■■■] 100% Complete.
+[■■■■■■■■■■] 100.00% Complete.
 Process completed.
 </pre>
 
@@ -86,7 +86,7 @@ The standard use of this class would be to create an instance outside of a for l
 ```c#
 using System;
 using System.Threading;
-using ConsoleUtility.ProgressBar;
+using ConsoleUtility;
 
 class Test
 {
@@ -116,13 +116,13 @@ class Test
 ```
 
 ### Output
-<pre>{                                                                                  } 0% Complete.</pre>
+<pre>{                                                                                  } 0.00% Complete.</pre>
 &darr; &darr; &darr;
 
 <pre>{|||||||||||||||||||||||||||||||||||||||                                           } 47.76% Complete.</pre>
 &darr; &darr; &darr;
 
 <pre>
-{||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||} 100% Complete.
+{||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||} 100.00% Complete.
 Process Completed.
 </pre>
