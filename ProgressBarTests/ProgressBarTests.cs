@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
+using ConsoleUtility;
 
-namespace ConsoleUtility
+namespace ConsoleUtilityTests
 {
-    class Test
+    class ProgressBarTests
     {
         static void Main(string[] args)
         {
