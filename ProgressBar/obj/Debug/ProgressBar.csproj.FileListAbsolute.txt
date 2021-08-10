@@ -3,4 +3,3 @@ C:\Users\Luke\source\repos\ConsoleProgressBar\ProgressBar\bin\Debug\ProgressBar.
 C:\Users\Luke\source\repos\ConsoleProgressBar\ProgressBar\obj\Debug\ProgressBar.csproj.CoreCompileInputs.cache
 C:\Users\Luke\source\repos\ConsoleProgressBar\ProgressBar\obj\Debug\ProgressBar.dll
 C:\Users\Luke\source\repos\ConsoleProgressBar\ProgressBar\obj\Debug\ProgressBar.pdb
-C:\Users\Luke\source\repos\ConsoleProgressBar\ProgressBar\obj\Debug\ProgressBar.csproj.AssemblyReference.cache

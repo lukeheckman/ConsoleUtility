@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Threading;
-using ProgressBar;
 
-namespace ProgressBar
+namespace ConsoleUtility
 {
     class Test
     {
