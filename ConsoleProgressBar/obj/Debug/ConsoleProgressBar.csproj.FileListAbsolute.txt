@@ -1,7 +1,0 @@
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\bin\Debug\ConsoleProgressBar.exe.config
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\bin\Debug\ConsoleProgressBar.exe
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\bin\Debug\ConsoleProgressBar.pdb
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\obj\Debug\ConsoleProgressBar.csproj.AssemblyReference.cache
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\obj\Debug\ConsoleProgressBar.csproj.CoreCompileInputs.cache
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\obj\Debug\ConsoleProgressBar.exe
-C:\Users\Luke\source\repos\ConsoleProgressBar\ConsoleProgressBar\obj\Debug\ConsoleProgressBar.pdb

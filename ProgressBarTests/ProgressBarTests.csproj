@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4BC8571D-0A06-4302-B877-C3CDD0C98343}</ProjectGuid>
+    <ProjectGuid>{E873D455-1930-4458-8E1E-51B0247C4BC1}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ConsoleProgressBar</RootNamespace>
-    <AssemblyName>ConsoleProgressBar</AssemblyName>
+    <RootNamespace>ProgressBarTests</RootNamespace>
+    <AssemblyName>ProgressBarTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ConsoleUtilityTests.ProgressBarTests</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
+    <Compile Include="ProgressBarTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
