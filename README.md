@@ -1,4 +1,4 @@
-# ConsoleProgressBar
+# ConsoleUtility.ProgressBar
 
 <pre>[■■■■■■■■  ] 80.00% Complete.</pre>
 
