@@ -1,10 +1,13 @@
 # ConsoleProgressBar
 
-[■■■■■■■■  ] 80% Complete.
+<pre>[■■■■■■■■  ] 80% Complete.</pre>
 
 &darr; &darr; &darr;
+
+<pre>
 [■■■■■■■■■■] 100% Complete.
 Process completed.
+</pre>
 
 ---
 
@@ -33,39 +36,39 @@ To generate the ConsoleProgressBar DLL on your own, build the solution in Visual
 
 ### Constructors
 
-ProgressBar() initializes a new instance of the ProgressBar Class with the default properties.
+`ProgressBar()` initializes a new instance of the ProgressBar Class with the default properties.
 
-ProgressBar(int, int) initializes a new instance of the ProgressBar Class with the given total number of steps and bar size.
+`ProgressBar(int, int)` initializes a new instance of the ProgressBar Class with the given total number of steps and bar size.
 
-ProgressBar(char, char, char, int, int) initializes a new instance of the ProgressBar Class with the given filler, left and right brackets, total number of steps, and  bar size.
+`ProgressBar(char, char, char, int, int)` initializes a new instance of the ProgressBar Class with the given filler, left and right brackets, total number of steps, and  bar size.
 
 
 ### Properties
 
-Filler Gets or sets the character to fill the bar with.
+`Filler` Gets or sets the character to fill the bar with.
 
-LBracket Gets or sets the character to use as the left bracket of the bar.
+`LBracket` Gets or sets the character to use as the left bracket of the bar.
 
-RBracket Gets or sets the character to use as the right bracket of the bar.
+`RBracket` Gets or sets the character to use as the right bracket of the bar.
 
-BarSize Gets or sets the bar size, not including the brackets and percent complete tag.
+`BarSize` Gets or sets the bar size, not including the brackets and percent complete tag.
 
-NumSteps Gets or sets the total number of steps to fill the bar.
+`NumSteps` Gets or sets the total number of steps to fill the bar.
 
-Bar Gets or sets the current bar to display using the other properties.
+`Bar` Gets or sets the current bar to display using the other properties.
 
 
 ### Methods
 
-NeedsUpdate() Increases the number of completed steps by 1 and returns a Boolean value of whether the bar needs to be updated or not based on the number completed out of the total number of steps.
+`NeedsUpdate()` Increases the number of completed steps by 1 and returns a Boolean value of whether the bar needs to be updated or not based on the number completed out of the total number of steps.
 
-GetUpdate() Rebuilds the bar and returns the updated bar as a string.
+`GetUpdate()` Rebuilds the bar and returns the updated bar as a string.
 
-GetPercentComplete() Formats the percent of steps complete out of the total and returns it as a string to display next to the bar.
+`GetPercentComplete()` Formats the percent of steps complete out of the total and returns it as a string to display next to the bar.
 
-DrawCurrent() Draws the current status of the bar in the Console.
+`DrawCurrent()` Draws the current status of the bar in the Console.
 
-DrawUpdate() Checks to see if the bar needs updated, builds and sets the new bar (if needed), and writes the bar and the percent completed to the Console.
+`DrawUpdate()` Checks to see if the bar needs updated, builds and sets the new bar (if needed), and writes the bar and the percent completed to the Console.
 
 ---
 
@@ -80,7 +83,7 @@ The standard use of this class would be to create an instance outside of a for l
 
 ## Code Example
 
-`
+```c#
 using System;
 using System.Threading;
 using ProgressBar;
@@ -110,4 +113,16 @@ class Test
         }
     }
 }
-`
+```
+
+### Output
+<pre>{                                                                                  } 0% Complete.</pre>
+&darr; &darr; &darr;
+
+<pre>{|||||||||||||||||||||||||||||||||||||||                                           } 47.76% Complete.</pre>
+&darr; &darr; &darr;
+
+<pre>
+{||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||} 100% Complete.
+Process Completed.
+</pre>
