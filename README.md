@@ -27,7 +27,7 @@ Since this project has been built using C#, it is NOT a Windows DLL - it can onl
 ## Project Files
 
 The ConsoleProgressBar solution contains a C# file (ProgressBar.cs) used for building the class.
-To generate the ConsoleProgressBar DLL on your own, build the solution in Visual Studio. Alternatively, use the DLL included [here](\ProgressBar\bin\Debug\ProgressBar.dll).
+To generate the ConsoleProgressBar DLL on your own, build the solution in Visual Studio. Alternatively, download and use the DLL from [here](ProgressBar/bin/Debug/).
 
 ---
 
