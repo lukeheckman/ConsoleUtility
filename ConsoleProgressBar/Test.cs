@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading;
+using ProgressBar;
 
-namespace ConsoleProgressBar
+namespace ProgressBar
 {
-    class ProgressBarTest
+    class Test
     {
         static void Main(string[] args)
         {
@@ -12,18 +13,20 @@ namespace ConsoleProgressBar
             //var myBar = new ProgressBar(numSteps, barSize);
 
 
-            var statusChar = '|';
-            var lBracketChar = '{';
-            var rBracketChar = '}';
-            var numSteps = 69;
+            var filler = '|';
+            var lBracket = '{';
+            var rBracket = '}';
+            var numSteps = 67;
             var barSize = 82;
-            var myBar = new ProgressBar(statusChar, lBracketChar, rBracketChar, numSteps, barSize);
+            var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
 
 
             myBar.DrawCurrent();
+
             for (int i = 0; i < numSteps; i++)
             {
                 myBar.Update();
+
                 Thread.Sleep(25);
             }
 

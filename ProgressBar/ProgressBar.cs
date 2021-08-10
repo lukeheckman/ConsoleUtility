@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ConsoleProgressBar
+namespace ProgressBar
 {
     public class ProgressBar
     {
@@ -34,18 +34,18 @@ namespace ConsoleProgressBar
         }
 
 
-        public ProgressBar(char statusChar, char lBracketChar, char rBracketChar, int numSteps, int barSize)
+        public ProgressBar(char fillerChar, char lBracketChar, char rBracketChar, int numSteps, int barSize)
         {
             // Properties init performed by automatically calling the set method defined below
             /*
              * Acts the same as if private attributes were declared before the constructor and initialized like
-             * this.status = statusChar;
+             * this.filler = fillerChar;
              * this.lBracket = lBracketChar;
              * this.rBracket = rBracketChar;
              * size = 20;
              */
 
-            Status = statusChar;
+            Filler = fillerChar;
             LBracket = lBracketChar;
             RBracket = rBracketChar;
             NumSteps = numSteps;
@@ -55,7 +55,7 @@ namespace ConsoleProgressBar
         }
 
 
-        public char Status { get; set; } = '■';
+        public char Filler { get; set; } = '■';
 
         public char LBracket { get; set; } = '[';
 
@@ -104,7 +104,7 @@ namespace ConsoleProgressBar
 
             for (int i = 0; i < progress; i++)
             {
-                bar.Add(Status);
+                bar.Add(Filler);
             }
 
             for (int i = 0; i < BarSize - progress; i++)
