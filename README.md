@@ -86,7 +86,7 @@ The standard use of this class would be to create an instance outside of a for l
 ```c#
 using System;
 using System.Threading;
-using ProgressBar;
+using ConsoleUtility.ProgressBar;
 
 class Test
 {
