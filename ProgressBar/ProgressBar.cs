@@ -132,7 +132,7 @@ namespace ConsoleUtility
 
             bar.Add(RBracket);
 
-            return String.Concat(String.Join("", bar.ToArray()), " 0.00% Completed.");
+            return String.Concat(String.Join("", bar.ToArray()), " 0.00% Complete.");
         }
 
 
@@ -150,7 +150,7 @@ namespace ConsoleUtility
 
             bar.Add(RBracket);
 
-            return String.Concat(String.Join("", bar.ToArray()), " 100.00% Completed.");
+            return String.Concat(String.Join("", bar.ToArray()), " 100.00% Complete.");
         }
 
 
