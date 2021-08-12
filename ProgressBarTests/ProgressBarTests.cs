@@ -6,31 +6,62 @@ namespace ConsoleUtilityTests
 {
     class ProgressBarTests
     {
-        static void Main(string[] args)
-        {
-            //var numSteps = 101;
-            //var barSize = 20;
-            //var myBar = new ProgressBar(numSteps, barSize);
+        // Basic test: 
+    //    static void Main(string[] args)
+    //    {
+    //        //var numSteps = 101;
+    //        //var barSize = 20;
+    //        //var myBar = new ProgressBar(numSteps, barSize);
 
 
-            var filler = '|';
-            var lBracket = '{';
-            var rBracket = '}';
-            var numSteps = 67;
-            var barSize = 82;
-            var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
+    //        var filler = '|';
+    //        var lBracket = '{';
+    //        var rBracket = '}';
+    //        var numSteps = 67;
+    //        var barSize = 82;
+    //        var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
 
 
-            myBar.DrawCurrent();
+    //        myBar.DrawCurrent();
 
-            for (int i = 0; i < numSteps; i++)
+    //        for (int i = 0; i < numSteps; i++)
+    //        {
+    //            myBar.DrawUpdate();
+
+    //            Thread.Sleep(25);
+    //        }
+
+    //        Console.Read();
+    //    }
+
+    //}
+
+    static void Main(string[] args)
+    {
+        var filler = '|';
+        var lBracket = '{';
+        var rBracket = '}';
+        var numSteps = 0;
+        var barSize = 82;
+        var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
+
+
+        myBar.DrawInitial();
+
+            if (numSteps > 0)
             {
-                myBar.Update();
+                for (int i = 0; i < numSteps; i++)
+                {
+                    myBar.DrawUpdate();
 
-                Thread.Sleep(25);
+                    Thread.Sleep(25);
+                }
             }
+            else
+            {
+                myBar.DrawFinal();
+            }        
 
-            Console.Read();
-        }
+        Console.Read();
     }
 }
