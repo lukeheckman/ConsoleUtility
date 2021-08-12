@@ -184,6 +184,7 @@ namespace ConsoleUtility
         // Draws the empty bar with the 0% tag.
         public void DrawInitial()
         {
+            Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.WriteLine(GetInitial());
         }
 
@@ -191,6 +192,7 @@ namespace ConsoleUtility
         // Draws the filled bar with the 100% tag.
         public void DrawFinal()
         {
+            Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.WriteLine(GetFinal());
         }
 
