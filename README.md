@@ -62,15 +62,13 @@ To generate the ProgressBar DLL on your own, build the solution in Visual Studio
 
 #### Methods
 
-`NeedsUpdate()` Increases the number of completed steps by 1 and returns a Boolean value of whether the bar needs to be updated or not based on the number completed out of the total number of steps.
-
-`GetUpdate()` Rebuilds the bar and returns the updated bar as a string.
-
-`GetPercentComplete()` Formats the percent of steps complete out of the total and returns it as a string to display next to the bar.
-
 `DrawCurrent()` Draws the current status of the bar in the Console.
 
-`DrawUpdate()` Checks to see if the bar needs updated, builds and sets the new bar (if needed), and writes the bar and the percent completed to the Console.
+`DrawEmpty()` Draws an empty bar with the 0% tag.
+
+`DrawFilled()` Draws a filled bar with the 100% tag.
+
+`DrawUpdate()` Increments numSteps, rebuilds the bar if needed, and draws it with the correct tag.
 
 ---
 
@@ -78,7 +76,11 @@ To generate the ProgressBar DLL on your own, build the solution in Visual Studio
 ### Remarks
 
 Since this class is designed to be used in automated console applications, the most common constructor to use would be ProgressBar(int, int).
-The standard use of this class would be to create an instance outside of a for loop, display the empty bar using the DrawCurrent method before entering the loop, and then call the DrawUpdate method within each iteration of the loop.
+
+The standard use of this class would be to create an instance of a bar outside of a `for` loop, display the empty bar using `DrawEmpty()` before entering the loop, and then call `DrawUpdate()` within each iteration of the loop.
+
+For cases where you may end up with 0 steps to complete (condition of the `for` loop is never satisfied) but still want to display the bar, create an instance of the bar and display it and the 0% and tag using `DrawEmpty()` before entering an `if/else` statement. Call `DrawUpdate()` from inside your `for` loop in one of the branches of the `if/else` while calling `DrawFilled()` from the other.
+An example of this is demonstrated below.
 
 ---
 
@@ -97,22 +99,29 @@ class Test
         var filler = '|';
         var lBracket = '{';
         var rBracket = '}';
-        var numSteps = 67;
+        var numSteps = 0;
         var barSize = 82;
-
-        // Create a ProgressBar and define custom filler and bracket chars along with the number of steps and bar size.
+        
         var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
-
-        // Draw the empty bar.
-        myBar.DrawCurrent();
-
-        for (int i = 0; i < numSteps; i++)
+        myBar.DrawEmpty();
+        
+        // If there are some steps to complete, we can enter the for loop and update the bar.
+        if (numSteps > 0)
         {
-            // Draw the updated bar (if needed) and recalculate the percentage of tasks done.
-            myBar.Update();
-
-            Thread.Sleep(25);
+            for (int i = 0; i < numSteps; i++)
+            {
+                myBar.DrawUpdate();
+                Thread.Sleep(25);
+            }
         }
+        
+        // If there are no steps to complete, we can show the filled bar and 100% tag.
+        else
+        {
+            myBar.DrawFilled();
+        }
+        
+        Console.Read();
     }
 }
 ```
