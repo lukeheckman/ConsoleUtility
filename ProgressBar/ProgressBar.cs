@@ -181,16 +181,16 @@ namespace ConsoleUtility
         }
 
 
-        // Draws the empty bar with the 0% tag.
-        public void DrawInitial()
+        // Draws an empty bar with the 0% tag.
+        public void DrawEmpty()
         {
             Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.WriteLine(GetInitial());
         }
 
 
-        // Draws the filled bar with the 100% tag.
-        public void DrawFinal()
+        // Draws a filled bar with the 100% tag.
+        public void DrawFilled()
         {
             Console.SetCursorPosition(cursorLeft, cursorTop);
             Console.WriteLine(GetFinal());

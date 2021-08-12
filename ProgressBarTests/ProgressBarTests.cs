@@ -21,7 +21,7 @@ namespace ConsoleUtilityTests
             var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
 
 
-            myBar.DrawInitial();
+            myBar.DrawEmpty();
 
             for (int i = 0; i < numSteps; i++)
             {
@@ -45,7 +45,7 @@ namespace ConsoleUtilityTests
     //        var myBar = new ProgressBar(filler, lBracket, rBracket, numSteps, barSize);
 
 
-    //        myBar.DrawInitial();
+    //        myBar.DrawEmpty();
 
     //        if (numSteps > 0)
     //        {
@@ -58,7 +58,7 @@ namespace ConsoleUtilityTests
     //        }
     //        else
     //        {
-    //            myBar.DrawFinal();
+    //            myBar.DrawFilled();
     //        }
 
     //        Console.Read();
